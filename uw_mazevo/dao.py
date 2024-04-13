@@ -16,7 +16,6 @@ class Mazevo_DAO(DAO):
         return [abspath(os.path.join(dirname(__file__), "resources"))]
 
     def _custom_headers(self, method, url, headers, body):
-        basic_auth = self.get_service_setting('BASIC_AUTH')
-        if basic_auth is not None:
-            return {"Authorization": "Basic {}".format(basic_auth)}
-        
+        api_key = self.get_service_setting('API_KEY')
+        if api_key is not None:
+            return {"X-API-Key": api_key}

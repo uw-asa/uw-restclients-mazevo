@@ -1,10 +1,10 @@
-from uw_mazevo import Mazevo
+from uw_mazevo import get_resource, post_resource
 from uw_mazevo.models import Booking
 
 PUBLICEVENT_API = "/api/PublicEvent/{}"
 
 
-class PublicEvent(Mazevo):
+class PublicEvent(object):
     def get_events(self, **kwargs):
         """
         Only pass in the "minDateChanged" parameter if you want results
@@ -16,6 +16,6 @@ class PublicEvent(Mazevo):
         body = kwargs
 
         events = []
-        for data in self._post_resource(url, body):
-            events.append(Booking(data))
+        for data in post_resource(url, body):
+            events.append(Booking.from_json(data))
         return events

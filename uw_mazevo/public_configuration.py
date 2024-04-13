@@ -1,10 +1,10 @@
-from uw_mazevo import Mazevo
+from uw_mazevo import get_resource, post_resource
 from uw_mazevo.models import Room, Status
 
 PUBLICCONFIGURATION_API = "/api/PublicConfiguration/{}"
 
 
-class PublicConfiguration(Mazevo):
+class PublicConfiguration(object):
     def get_rooms(self, building_id=0):
         """
         Gets a list of Rooms. building_id of 0 returns all rooms.
@@ -13,8 +13,8 @@ class PublicConfiguration(Mazevo):
         body = {"buildingId": building_id}
 
         rooms = []
-        for data in self._post_resource(url, body):
-            rooms.append(Room(data))
+        for data in post_resource(url, body):
+            rooms.append(Room.from_json(data))
         return rooms
 
     def get_statuses(self):
@@ -24,5 +24,7 @@ class PublicConfiguration(Mazevo):
         url = PUBLICCONFIGURATION_API.format('Statuses')
 
         statuses = []
-        for data in self._get_resource(url):
-            statuses.append(Status(data))
+        for data in get_resource(url):
+            statuses.append(Status.from_json(data))
+
+        return statuses

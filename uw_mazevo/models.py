@@ -21,6 +21,13 @@ class Status(models.Model):
     def __str__(self):
         return self.description
 
+    @staticmethod
+    def from_json(data):
+        status = Status()
+        status.id = data['statusId']
+        status.status_type_id = data['statusType']
+        status.description = data['description']
+        return status
 
 class EventType(models.Model):
     description = models.CharField(max_length=30)
@@ -51,6 +58,14 @@ class Room(models.Model):
     def __str__(self):
         return self.description
 
+    @staticmethod
+    def from_json(data):
+        room = Room()
+        room.id = data['roomId']
+        room.building = data['buildingId']
+        room.dv_building = data['buildingDescription']
+        room.description = data['description']
+        return room
 
 class Booking(models.Model):
     booking_date = models.DateField()
@@ -76,6 +91,24 @@ class Booking(models.Model):
     date_added = models.DateTimeField()
     date_changed = models.DateTimeField()
 
+    @staticmethod
+    def from_json(data):
+        booking = Booking()
+        booking.room_description = data['roomDescription']
+        booking.group_name = data['organizationName']
+        booking.event_name = data['eventName']
+        booking.reservation_id = data['eventNumber']
+        booking.event_type_description = data['eventType']
+        booking.id = data['bookingId']
+        booking.building = data['buildingId']
+        booking.time_booking_start = data['dateTimeStart']
+        booking.time_booking_end = data['dateTimeEnd']
+        booking.building_code = data['buildingId']
+        booking.dv_building = data['buildingDescription']
+        booking.room = data['roomId']
+        booking.status = data['statusId']
+        booking.date_changed = data['dateChanged']
+        return booking
 
 class ServiceOrderDetail(models.Model):
     booking_date = models.DateField()

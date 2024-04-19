@@ -1,5 +1,7 @@
 # REST client for the Mazevo API
 
+[![Coverage Status](https://raw.githubusercontent.com/uw-asa/uw-restclients-mazevo/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/uw-asa/uw-restclients-mazevo/blob/python-coverage-comment-action-data/htmlcov/index.html)
+
 Installation:
 
     pip install uw-restclients-mazevo

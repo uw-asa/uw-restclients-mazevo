@@ -16,4 +16,4 @@ class TestPublicEvent(TestCase):
         )
         self.assertEqual(len(events), 2)
         self.assertEqual(events[0].id, 10213)
-        self.assertEqual(events[1].dv_building, "Student Center")
+        self.assertEqual(events[1].building_description, "Student Center")

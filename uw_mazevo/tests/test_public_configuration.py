@@ -19,4 +19,4 @@ class TestPublicConfiguration(TestCase):
         rooms = config.get_rooms(1)
         self.assertEqual(len(rooms), 2)
         self.assertEqual(rooms[0].description, "Room 100")
-        self.assertEqual(rooms[1].dv_building, "Student Center")
+        self.assertEqual(rooms[1].building_description, "Student Center")

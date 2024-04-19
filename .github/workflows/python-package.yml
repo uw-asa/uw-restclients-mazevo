@@ -52,6 +52,7 @@ jobs:
         python -m compileall ${APP_NAME}/
         python -Wd -m coverage run ${APP_NAME}/test.py -v
     - name: Python Coverage Comment
+      if: matrix.python-version == env.COVERAGE_PYTHON_VERSION
       uses: py-cov-action/python-coverage-comment-action@v3.23
       with:
         GITHUB_TOKEN: ${{ github.token }}

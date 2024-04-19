@@ -1,4 +1,4 @@
-from uw_mazevo import get_resource, post_resource
+from uw_mazevo import post_resource
 from uw_mazevo.models import Booking
 
 PUBLICEVENT_API = "/api/PublicEvent/{}"

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import TestCase
-from uw_mazevo.public_event import PublicEvent
+from uw_mazevo.api import PublicEvent
 
 
 class TestPublicEvent(TestCase):

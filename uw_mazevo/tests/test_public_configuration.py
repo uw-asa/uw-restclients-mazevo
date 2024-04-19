@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import TestCase
-from uw_mazevo.public_configuration import PublicConfiguration
+from uw_mazevo.api import PublicConfiguration
 
 
 class TestPublicConfiguration(TestCase):

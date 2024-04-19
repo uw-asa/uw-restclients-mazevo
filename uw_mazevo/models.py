@@ -7,8 +7,8 @@ class Status(models.Model):
     STATUS_TYPE_DOES_NOT_BLOCK_SPACE = 0
     STATUS_TYPE_BLOCKS_SPACE = 1
     STATUS_TYPE_CHOICES = (
-        (STATUS_TYPE_DOES_NOT_BLOCK_SPACE, 'Does Not Block Space'),
-        (STATUS_TYPE_BLOCKS_SPACE, 'Blocks Space'),
+        (STATUS_TYPE_DOES_NOT_BLOCK_SPACE, "Does Not Block Space"),
+        (STATUS_TYPE_BLOCKS_SPACE, "Blocks Space"),
     )
 
     description = models.CharField(max_length=30)
@@ -22,10 +22,11 @@ class Status(models.Model):
     @staticmethod
     def from_json(data):
         status = Status()
-        status.id = data['statusId']
-        status.status_type = data['statusType']
-        status.description = data['description']
+        status.id = data["statusId"]
+        status.status_type = data["statusType"]
+        status.description = data["description"]
         return status
+
 
 class EventType(models.Model):
     description = models.CharField(max_length=30)
@@ -64,18 +65,19 @@ class Room(models.Model):
     @staticmethod
     def from_json(data):
         room = Room()
-        room.id = data['roomId']
-        room.description = data['description']
-        room.room_type_id = data['roomTypeId']
-        room.room_type = ['roomType']
-        room.building_id = data['buildingId']
-        room.building_description = data['buildingDescription']
-        room.time_zone = data['timeZone']
-        room.security_level = data['securityLevel']
-        room.min_capacity = data['minCapacity']
-        room.max_capacity = data['maxCapacity']
-        room.has_bookings = data['hasBookings']
+        room.id = data["roomId"]
+        room.description = data["description"]
+        room.room_type_id = data["roomTypeId"]
+        room.room_type = ["roomType"]
+        room.building_id = data["buildingId"]
+        room.building_description = data["buildingDescription"]
+        room.time_zone = data["timeZone"]
+        room.security_level = data["securityLevel"]
+        room.min_capacity = data["minCapacity"]
+        room.max_capacity = data["maxCapacity"]
+        room.has_bookings = data["hasBookings"]
         return room
+
 
 class Booking(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
@@ -95,20 +97,21 @@ class Booking(models.Model):
     @staticmethod
     def from_json(data):
         booking = Booking()
-        booking.id = data['bookingId']
-        booking.room_description = data['roomDescription']
-        booking.organization_name = data['organizationName']
-        booking.event_name = data['eventName']
-        booking.event_number = data['eventNumber']
-        booking.event_type = data['eventType']
-        booking.building = data['buildingId']
-        booking.date_time_start = datetime.fromisoformat(data['dateTimeStart'])
-        booking.date_time_end = datetime.fromisoformat(data['dateTimeEnd'])
-        booking.building_description = data['buildingDescription']
-        booking.room_id = data['roomId']
-        booking.status_id = data['statusId']
-        booking.date_changed = datetime.fromisoformat(data['dateChanged'])
+        booking.id = data["bookingId"]
+        booking.room_description = data["roomDescription"]
+        booking.organization_name = data["organizationName"]
+        booking.event_name = data["eventName"]
+        booking.event_number = data["eventNumber"]
+        booking.event_type = data["eventType"]
+        booking.building = data["buildingId"]
+        booking.date_time_start = datetime.fromisoformat(data["dateTimeStart"])
+        booking.date_time_end = datetime.fromisoformat(data["dateTimeEnd"])
+        booking.building_description = data["buildingDescription"]
+        booking.room_id = data["roomId"]
+        booking.status_id = data["statusId"]
+        booking.date_changed = datetime.fromisoformat(data["dateChanged"])
         return booking
+
 
 class ServiceOrderDetail(models.Model):
     booking_date = models.DateField()

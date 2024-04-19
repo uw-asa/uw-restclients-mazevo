@@ -9,7 +9,7 @@ class PublicConfiguration(object):
         """
         Gets a list of Rooms. building_id of 0 returns all rooms.
         """
-        url = PUBLICCONFIGURATION_API.format('Rooms')
+        url = PUBLICCONFIGURATION_API.format("Rooms")
         body = {"buildingId": building_id}
 
         rooms = []
@@ -21,7 +21,7 @@ class PublicConfiguration(object):
         """
         Gets a list of Statuses
         """
-        url = PUBLICCONFIGURATION_API.format('Statuses')
+        url = PUBLICCONFIGURATION_API.format("Statuses")
 
         statuses = []
         for data in get_resource(url):

@@ -27,16 +27,21 @@ def get_resource(url):
 
     return json.loads(response.data)
 
+
 def post_resource(url, body):
     """
     Issue a POST request to Mazevo with the given url and content
     and return the response.
     """
 
-    response = DAO.postURL(url, {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    }, json.dumps(body))
+    response = DAO.postURL(
+        url,
+        {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        json.dumps(body),
+    )
     logger.debug("POST {0} ==status==> {1}".format(url, response.status))
 
     if response.status != 200:

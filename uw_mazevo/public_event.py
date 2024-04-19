@@ -12,7 +12,7 @@ class PublicEvent(object):
         "minDateChanged" date. Changed bookings are for critical booking
         information only like date, time, status or room.
         """
-        url = PUBLICEVENT_API.format('getevents')
+        url = PUBLICEVENT_API.format("getevents")
         body = kwargs
 
         events = []

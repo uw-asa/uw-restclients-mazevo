@@ -43,3 +43,7 @@ jobs:
       run: |
         python -m compileall ${APP_NAME}/
         python -Wd -m coverage run ${APP_NAME}/test.py -v
+    - name: Python Coverage Comment
+      uses: py-cov-action/python-coverage-comment-action@v3.23
+      with:
+        GITHUB_TOKEN: ${{ github.token }}

@@ -1,9 +1,20 @@
 from uw_mazevo import get_resource, post_resource
-from uw_mazevo.models import Booking, Room, Status
+from uw_mazevo.models import Booking, Building, Room, Status
 
 
 class PublicConfiguration(object):
     URL = "/api/PublicConfiguration/{}"
+
+    def get_buildings(self):
+        """
+        Gets a list of Rooms. building_id of 0 returns all rooms.
+        """
+        url = self.URL.format("Buildings")
+
+        buildings = []
+        for data in get_resource(url):
+            buildings.append(Building.from_json(data))
+        return buildings
 
     def get_rooms(self, building_id=0):
         """

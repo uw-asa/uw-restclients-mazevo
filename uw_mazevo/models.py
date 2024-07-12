@@ -45,6 +45,14 @@ class Building(models.Model):
     def __str__(self):
         return self.description
 
+    @staticmethod
+    def from_json(data):
+        building = Building()
+        building.id = data["buildingId"]
+        building.description = data["description"]
+        building.time_zone = data["timeZone"]
+        return building
+
 
 class Room(models.Model):
     id = models.PositiveIntegerField(primary_key=True)

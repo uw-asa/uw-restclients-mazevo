@@ -1,4 +1,4 @@
-from uw_mazevo import get_resource, post_resource
+from uw_mazevo import DAO, get_resource, post_resource
 from uw_mazevo.models import Booking, Building, Room, Status
 
 
@@ -39,6 +39,20 @@ class PublicConfiguration(object):
             statuses.append(Status.from_json(data))
 
         return statuses
+
+
+class PublicCourses(object):
+    URL = "/api/publiccourses/{}"
+
+    def import_term(self, courses):
+        """
+        Import a Term
+        """
+        url = self.URL.format("importterm")
+        body = courses
+        body["apiKey"] = DAO.get_service_setting("API_KEY")
+
+        post_resource(url, body)
 
 
 class PublicEvent(object):

@@ -95,8 +95,11 @@ class Booking(models.Model):
     event_number = models.PositiveIntegerField()
     event_type = models.CharField(max_length=30)
     building = models.ForeignKey(Building)
+    setup_minutes = models.PositiveIntegerField()
     date_time_start = models.DateTimeField()
     date_time_end = models.DateTimeField()
+    teardown_minutes = models.PositiveIntegerField()
+    customer_access_minutes = models.PositiveIntegerField()
     building_description = models.CharField(max_length=50)
     room = models.ForeignKey(Room)
     status = models.ForeignKey(Status)
@@ -112,8 +115,11 @@ class Booking(models.Model):
         booking.event_number = data["eventNumber"]
         booking.event_type = data["eventType"]
         booking.building = data["buildingId"]
+        booking.setup_minutes = data["setupMinutes"]
         booking.date_time_start = datetime.fromisoformat(data["dateTimeStart"])
         booking.date_time_end = datetime.fromisoformat(data["dateTimeEnd"])
+        booking.teardown_minutes = data["teardownMinutes"]
+        booking.customer_access_minutes = data["customerAccessMinutes"]
         booking.building_description = data["buildingDescription"]
         booking.room_id = data["roomId"]
         booking.status_id = data["statusId"]

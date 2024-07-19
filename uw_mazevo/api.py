@@ -1,5 +1,5 @@
 from uw_mazevo import DAO, get_resource, post_resource
-from uw_mazevo.models import Booking, Building, Room, Status
+from uw_mazevo.models import Booking, BookingDetail, Building, Room, Status
 
 
 class PublicConfiguration(object):
@@ -71,4 +71,21 @@ class PublicEvent(object):
         events = []
         for data in post_resource(url, body):
             events.append(Booking.from_json(data))
+        return events
+
+    def get_events_with_booking_details(self, booking_ids):
+        """
+        Returns all event information and resource details
+
+        """
+        url = self.URL.format("GetEventsWithBookingDetails")
+        body = {"bookingIds": booking_ids}
+
+        events = []
+        for data in post_resource(url, body):
+            event = Booking.from_json(data)
+            event.booking_details = []
+            for detail in data["bookingDetails"]:
+                event.booking_details.append(BookingDetail.from_json(detail))
+            events.append(event)
         return events

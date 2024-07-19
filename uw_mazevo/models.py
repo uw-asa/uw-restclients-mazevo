@@ -127,11 +127,29 @@ class Booking(models.Model):
         return booking
 
 
-class ServiceOrderDetail(models.Model):
-    booking_date = models.DateField()
-    service_order_start_time = models.TimeField(null=True)
-    service_order_end_time = models.TimeField(null=True)
-    resource_description = models.CharField(max_length=50)
-    resource_external_reference = models.CharField(max_length=255, blank=True)
-    service_order_id = models.PositiveIntegerField()
+class BookingDetail(models.Model):
     booking = models.ForeignKey(Booking)
+    id = models.PositiveIntegerField(primary_key=True)
+    resource_id = models.PositiveIntegerField()
+    resource = models.CharField()
+    service_provider = models.CharField()
+    quantity = models.PositiveIntegerField()
+    notes = models.TextField()
+    special_instructions = models.TextField()
+    service_start_time = models.TimeField(null=True)
+    service_end_time = models.TimeField(null=True)
+
+    @staticmethod
+    def from_json(data):
+        detail = BookingDetail()
+        detail.booking_id = data["bookingId"]
+        detail.id = data["bookingDetailId"]
+        detail.resource_id = data["resourceId"]
+        detail.resource_description = data["resource"]
+        detail.service_provider = data["serviceProvier"]
+        detail.quantity = data["quantity"]
+        detail.notes = data["notes"]
+        detail.special_instructions = data["specialInstructions"]
+        detail.service_start_time = data["serviceStartTime"]
+        detail.service_end_time = data["serviceEndTime"]
+        return detail

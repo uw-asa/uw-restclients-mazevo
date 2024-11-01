@@ -131,8 +131,9 @@ class BookingDetail(models.Model):
     booking = models.ForeignKey(Booking)
     id = models.PositiveIntegerField(primary_key=True)
     resource_id = models.PositiveIntegerField()
-    resource = models.CharField()
-    service_provider = models.CharField()
+    resource_description = models.CharField()
+    service_provider_id = models.PositiveIntegerField()
+    service_provider_description = models.CharField()
     quantity = models.PositiveIntegerField()
     notes = models.TextField()
     special_instructions = models.TextField()
@@ -146,10 +147,14 @@ class BookingDetail(models.Model):
         detail.id = data["bookingDetailId"]
         detail.resource_id = data["resourceId"]
         detail.resource_description = data["resource"]
-        detail.service_provider = data["serviceProvier"]
+        detail.service_provider_id = data["serviceProviderId"]
+        detail.service_provider_description = data["serviceProvider"]
         detail.quantity = data["quantity"]
         detail.notes = data["notes"]
         detail.special_instructions = data["specialInstructions"]
-        detail.service_start_time = data["serviceStartTime"]
-        detail.service_end_time = data["serviceEndTime"]
+        # These are sent with the wrong time zone added. Make them local times
+        detail.service_start_time = None if data["serviceStartTime"] is None \
+            else datetime.fromisoformat(data["serviceStartTime"]).replace(tzinfo=None)
+        detail.service_end_time = None if data["serviceEndTime"] is None \
+            else datetime.fromisoformat(data["serviceEndTime"]).replace(tzinfo=None)
         return detail

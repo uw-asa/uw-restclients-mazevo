@@ -89,3 +89,16 @@ class PublicEvent(object):
                 event.booking_details.append(BookingDetail.from_json(detail))
             events.append(event)
         return events
+
+    def get_resource_details(self, **kwargs):
+        """
+        Get Resource Details with specific booking Ids and resource Ids (Optional).
+
+        """
+        url = self.URL.format("getresourcedetails")
+        body = kwargs
+
+        details = []
+        for data in post_resource(url, body):
+            details.append(BookingDetail.from_json(data))
+        return details

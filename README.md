@@ -5,14 +5,14 @@
 | Name                                            |    Stmts |     Miss |   Cover |   Missing |
 |------------------------------------------------ | -------: | -------: | ------: | --------: |
 | uw\_mazevo/\_\_init\_\_.py                      |       20 |        2 |     90% |    24, 48 |
-| uw\_mazevo/api.py                               |       57 |       25 |     56% |12-17, 51-55, 81-91, 98-104 |
+| uw\_mazevo/api.py                               |       58 |       25 |     57% |12-17, 55-59, 85-95, 102-108 |
 | uw\_mazevo/dao.py                               |       12 |        1 |     92% |        19 |
 | uw\_mazevo/models.py                            |      131 |       22 |     83% |20, 37, 46, 50-54, 71, 145-160 |
 | uw\_mazevo/test.py                              |        8 |        0 |    100% |           |
 | uw\_mazevo/tests/\_\_init\_\_.py                |        0 |        0 |    100% |           |
 | uw\_mazevo/tests/test\_public\_configuration.py |       15 |        0 |    100% |           |
 | uw\_mazevo/tests/test\_public\_event.py         |        9 |        0 |    100% |           |
-|                                       **TOTAL** |  **252** |   **50** | **80%** |           |
+|                                       **TOTAL** |  **253** |   **50** | **80%** |           |
 
 
 ## Setup coverage badge

@@ -44,6 +44,10 @@ class PublicConfiguration(object):
 class PublicCourses(object):
     URL = "/api/publiccourses/{}"
 
+    # specific keys needed for term import
+    DAYS_OF_WEEK = ["sunday", "monday", "tuesday", "wednesday",
+                    "thursday", "friday", "saturday"]
+
     def import_term(self, courses):
         """
         Import a Term
